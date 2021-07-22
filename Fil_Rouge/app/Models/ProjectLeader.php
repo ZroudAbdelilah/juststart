@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class ProjectLeader extends Model
 {
     use HasFactory;
-
-    protected $tableName = "admin";
-
+    protected $tableName = "project_leader";
     protected $fillable = [
         // '',
         'username',
@@ -18,4 +16,7 @@ class Admin extends Model
         'password'
 
     ];
+    public function adresss(){
+        return $this->hasOne(Adress::class);
+    }
 }

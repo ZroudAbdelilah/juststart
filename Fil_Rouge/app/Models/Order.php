@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Adress extends Model
+class Order extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         // '',
-        'county',
-        'state',
-        'city',
-        'street',
-        'p_code'
-
+        'qte',
+        'total_p'
     ];
+    public function users(){
+        return $this->hasOne(User::class);
+    }
 }
