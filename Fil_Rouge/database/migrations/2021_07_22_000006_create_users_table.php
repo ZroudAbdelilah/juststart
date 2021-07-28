@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('email', 70)->nullable()->default(null);
             $table->text('password')->nullable()->default(null);
             $table->unsignedBigInteger('adresss_id');
+            $table->string('token',250)->nullable();
+            $table->timestamps();
 
             $table->index(["adresss_id"], 'fk_users_adresss1_idx');
 

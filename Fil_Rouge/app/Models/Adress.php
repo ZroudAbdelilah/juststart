@@ -9,8 +9,11 @@ class Adress extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $table = "adresss";
+
     protected $fillable = [
-        // '',
         'county',
         'state',
         'city',
@@ -18,4 +21,6 @@ class Adress extends Model
         'p_code'
 
     ];
+
+    
 }

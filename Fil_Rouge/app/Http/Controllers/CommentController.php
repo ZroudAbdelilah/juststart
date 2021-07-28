@@ -26,6 +26,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+        $this->middleware('auth:sanctum');
         return Comment::create($request->all());
     }
 

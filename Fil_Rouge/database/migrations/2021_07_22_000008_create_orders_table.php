@@ -22,7 +22,8 @@ class CreateOrdersTable extends Migration
             $table->integer('qte')->nullable()->default('1');
             $table->decimal('total_p')->nullable();
             $table->unsignedBigInteger('users_id');
-
+            $table->timestamps();
+            
             $table->index(["users_id"], 'fk_orders_users1_idx');
 
 

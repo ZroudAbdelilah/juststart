@@ -24,7 +24,7 @@ class CreateTagsHasProjectsTable extends Migration
             $table->index(["projects_id"], 'fk_tags_has_projects_projects1_idx');
 
             $table->index(["tags_id"], 'fk_tags_has_projects_tags1_idx');
-
+            $table->timestamps();
 
             $table->foreign('tags_id', 'fk_tags_has_projects_tags1_idx')
                 ->references('id')->on('tags')

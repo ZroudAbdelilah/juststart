@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::all();
+        return User::with(['adresss'])->get();
     }
 
     /**
@@ -26,7 +26,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
         return USER::create($request->all());
     }
 

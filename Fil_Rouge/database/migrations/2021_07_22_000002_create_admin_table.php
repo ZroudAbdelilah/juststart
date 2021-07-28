@@ -22,6 +22,8 @@ class CreateAdminTable extends Migration
             $table->string('username', 45)->nullable();
             $table->string('email', 45)->nullable();
             $table->text('password')->nullable();
+            $table->string('token',250)->nullable();
+            $table->timestamps();
         });
     }
 

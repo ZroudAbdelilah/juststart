@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AdressController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -65,6 +66,6 @@ class AdressController extends Controller
     public function destroy($id)
     {
         //
-       return Adress::destroy($id);
+        return Adress::destroy($id);
     }
 }

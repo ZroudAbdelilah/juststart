@@ -24,6 +24,7 @@ class CreateAdresssTable extends Migration
             $table->string('city', 45)->nullable();
             $table->string('street', 70)->nullable();
             $table->integer('p_code')->nullable();
+            $table->timestamps();
         });
     }
 

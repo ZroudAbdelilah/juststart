@@ -26,7 +26,8 @@ class CreateProjectsTable extends Migration
             $table->text('thumbnail')->nullable();
             $table->unsignedBigInteger('categorys_id');
             $table->unsignedBigInteger('project_leader_id');
-
+            $table->timestamps();
+            
             $table->index(["categorys_id"], 'fk_projects_categorys1_idx');
 
             $table->index(["project_leader_id"], 'fk_projects_project_leader1_idx');

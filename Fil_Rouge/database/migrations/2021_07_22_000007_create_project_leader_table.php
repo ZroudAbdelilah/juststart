@@ -23,6 +23,8 @@ class CreateProjectLeaderTable extends Migration
             $table->string('email', 45)->nullable();
             $table->text('password')->nullable();
             $table->unsignedBigInteger('adresss_id');
+            $table->string('token',250)->nullable();
+            $table->timestamps();
 
             $table->index(["adresss_id"], 'fk_project_leader_adresss1_idx');
 

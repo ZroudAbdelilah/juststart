@@ -20,6 +20,7 @@ class CreateTagsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('name', 70)->nullable()->default(null);
+            $table->timestamps();
         });
     }
 

@@ -14,7 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        return Project::all();
+        return Project::with(['tags'])->get();
     }
 
     /**
@@ -66,5 +66,17 @@ class ProjectController extends Controller
     {
         //
         return Project::destroy($id);
+    }
+
+    /**
+     * Search for name.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        //
+        return Project::where('name','like','%'.$name.'%')->get();
     }
 }

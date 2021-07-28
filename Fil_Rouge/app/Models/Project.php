@@ -24,4 +24,11 @@ class Project extends Model
     public function project_leader(){
         return $this->hasOne(ProjectLeader::class);
     }
+
+    public function tags()
+{
+    return $this->belongsToMany('App\Models\Tag','tags_has_projects','projects_id','tags_id');
+}
+
+    
 }

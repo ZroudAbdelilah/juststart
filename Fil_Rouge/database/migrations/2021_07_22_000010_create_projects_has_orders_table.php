@@ -20,7 +20,7 @@ class CreateProjectsHasOrdersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('projects_id');
             $table->unsignedBigInteger('orders_id');
-
+            $table->timestamps();
             $table->index(["orders_id"], 'fk_projects_has_orders_orders1_idx');
 
             $table->index(["projects_id"], 'fk_projects_has_orders_projects1_idx');

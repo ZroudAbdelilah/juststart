@@ -26,7 +26,7 @@ class CreateCommentsTable extends Migration
             $table->index(["projects_id"], 'fk_comments_projects1_idx');
 
             $table->index(["users_id"], 'fk_comments_users1_idx');
-
+            $table->timestamps();
 
             $table->foreign('projects_id', 'fk_comments_projects1_idx')
                 ->references('id')->on('projects')
