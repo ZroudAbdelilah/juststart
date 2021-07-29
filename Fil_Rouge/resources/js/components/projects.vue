@@ -15,7 +15,7 @@
 <style scoped>
 .projects{
     margin: auto;
-    max-width: 1050px;
+    /* max-width: 1050px; */
     width: 100%;
     display: grid;
     justify-content: center;

@@ -15,7 +15,7 @@
                 <div class="author">
                     <span>By Zroud</span>
                 </div>
-                <div class="progress-bar">
+                <div class="progress-br">
                     <div class="full">
                         <div style="width:50%;" class="progress"></div>
                     </div>
@@ -73,23 +73,24 @@
 .author{
     margin-bottom: 8px;
 }
-.progress-bar{
+.progress-br{
     margin-bottom: 16px;
 }
-.progress-bar .full{
+.progress-br .full{
     width: 100%;
     height: 8px;
     background-color: var(--light-green);
     margin-bottom: 4px;
 }
-.progress-bar .percentage{
+.progress-br .percentage{
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
 }
-.progress-bar .full .progress{
+.progress-br .full .progress{
     height: 100%;
+        border-radius: 0px;
     background-color: var(--green);
 }
 .request{

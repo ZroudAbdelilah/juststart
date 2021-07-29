@@ -1,50 +1,46 @@
 <template>
     <div>
-        <h1>Header</h1>
-        <hr>
-        <ul>
-            <li @click="link()" :class="(active == 'home')?'active':''" ><router-link to="/" >Home</router-link></li>
-            <li @click="link()" :class="(active == 'contact')?'active':''"><router-link to="/contact" >Contact</router-link></li>
-        </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="col-auto d-flex align-items-center m-3">
+                <img src="/img/juststart.png" alt="logo" width="100" class="logo img-fluid">
+            </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-        <input type="text" v-model="msg">
-        <br>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Découvrir Projets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Démarrer Un Projet</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit"><i  class="fas fa-search"></i></button>
+      <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Connexion</button>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">S'inscrire</button>
+    </form>
+  </div>
+</nav>
+
+
+
     </div>
 </template>
 
 <style scoped>
-li.active{
-    color: red;
-}
-h1{
-    color: green;
-}
+
 </style>
 
 <script>
 export default {
-    props:{
-        active:String
-    },
-    data:()=>{
-        return {
-            msg:''
-        }
-    },
-    watch:{
-        msg(){
-        
-        }
-    },
-    methods:{
-        link(){
-            setTimeout(() => {
-                this.msg = "dsfsdf";
-            }, 3000);
-        }
-    },
-    created(){
-        this.link()
-    }
+    
+
 }
 </script>

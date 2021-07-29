@@ -1,8 +1,8 @@
-import Home from './pages/home.vue'
+import projectPage from './pages/projects-page.vue'
 import Contact from './pages/contact.vue'
 
 const routes = [
-    {path : '/', component: Home},
+    {path : '/', component: projectPage},
     {path : '/contact', component : Contact}
 ]
 export default routes

@@ -1,19 +1,32 @@
 <template>
     <div>
-        <h3>Explorez <span>182 projets</span></h3>
-        <projects :pages=pages :maxCard=9 :cols=3 :key=key />
+        <Header/>
+        <div class="container">
+            <h3>Explorez <span>182 projets</span></h3>
+            <projects :pages=pages :maxCard=9 :cols=3 :key=key />
+        </div>
     </div>
 </template>
 <style scoped>
 h3 span{
     color:var(--green);
 }
+.container{
+    max-width: 1340px;
+    margin: auto;
+
+}
+h3{
+    margin: 16px;
+}
 </style>
 <script>
 import projects from '../components/projects.vue'
+import Header from '../components/header.vue'
 export default {
     components:{
-        projects
+        projects,
+        Header
     },
     data:()=>{
         return {
