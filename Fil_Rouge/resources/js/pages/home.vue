@@ -1,5 +1,6 @@
 <template>
     <div>
+           <Header/>
         <div class="filter border">
             <div class="container">
                 <div class="row text-center text-dark d-flex justify-content-center py-3">
@@ -126,12 +127,14 @@ a{
 </style>
 
 <script>
+import Header from '../components/header.vue'
 import cardHorizontal from '../components/card-horizontal.vue'
 import SlideCard from '../components/slide-card.vue'
 import Footer from '../components/footer.vue'
 import carousel from 'vue-owl-carousel'
 export default {
     components:{
+        Header,
         cardHorizontal,
         SlideCard,
         Footer,
