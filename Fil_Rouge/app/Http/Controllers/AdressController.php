@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class AdressController extends Controller
 {
     
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +28,7 @@ class AdressController extends Controller
     public function store(Request $request)
     {
         //
+        // $this->middleware('admin');
         return Adress::create($request->all());
     }
 

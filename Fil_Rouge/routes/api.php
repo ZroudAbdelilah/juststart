@@ -23,51 +23,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Public routes
-Route::resource('adresss', AdressController::class);
-Route::resource('categorys', CategoryController::class);
-Route::resource('comments', CommentController::class);
-Route::resource('orders', OrderController::class);
-Route::resource('projects', ProjectController::class);
-Route::resource('project_leader', ProjectLeaderController::class);
-Route::resource('tags', TagController::class);
-Route::resource('users', UserController::class);
+
 
 Route::get('projects/search/{name}',[ProjectController::class,'search']);
-
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
+Route::post('/user/register',[AuthController::class,'register']);
+Route::post('/user/login',[AuthController::class,'login']);
 Route::post('/leaderproject/register',[AuthProjectLeaderController::class,'register']);
 Route::post('/leaderproject/login',[AuthProjectLeaderController::class,'login']);
+
 //Protected routes
-Route::group(['middleware'=>['auth:sanctum']], function () {
-    //
-   Route::get('projects/search/{name}',[ProjectController::class,'search']);
-
-   Route::post('/logout',[AuthController::class,'logout']);
-   Route::post('/leaderproject/logout',[AuthProjectLeaderController::class,'logout']);
-});
-
-
-
-
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
-
-Route::middleware(['auth:sanctum'])->prefix('/admin')->group(function () {
-    require_once __DIR__.'/custom/admin.php';
-});
-Route::middleware(['auth:sanctum'])->prefix('/leader')->group(function () {
-    require_once __DIR__.'/custom/leader.php';
-});
-Route::middleware(['auth:sanctum'])->prefix('/user')->group(function () {
-    require_once __DIR__.'/custom/user.php';
-});
-
-
 Route::get('/progress', function () {
     return ["progress" => rand(10,99)];
 });
+
+
+Route::middleware(['admin'])->prefix('/dashboard/admin')->group(function () {
+    Route::resource('adresss', AdressController::class);
+    Route::resource('categorys', CategoryController::class);
+    Route::resource('comments', CommentController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('project_leader', ProjectLeaderController::class);
+    Route::resource('tags', TagController::class);
+    Route::resource('users', UserController::class);
+    // Route::post('/logout',[AuthController::class,'logout']);
+});
+
+Route::middleware(['projectLeader'])->prefix('/dashboard/projectleader')->group(function () {
+    Route::resource('adresss', AdressController::class);
+    Route::resource('categorys', CategoryController::class);
+    Route::resource('comments', CommentController::class);
+    Route::resource('tags', TagController::class);
+    Route::resource('projects', ProjectController::class);
+});
+
+Route::middleware(['user'])->prefix('/dashboard/user')->group(function () {
+    Route::resource('orders', OrderController::class);
+    Route::resource('comments', CommentController::class);
+});
+
+Route::post('/admin/login', [App\Http\Controllers\adminController::class,'login']);

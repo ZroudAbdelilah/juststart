@@ -5,6 +5,7 @@
             <h3>Explorez <span>182 projets</span></h3>
             <projects :pages=pages :maxCard=9 :cols=3 :key=key />
         </div>
+        <Footer/>
     </div>
 </template>
 <style scoped>
@@ -23,10 +24,12 @@ h3{
 <script>
 import projects from '../components/projects.vue'
 import Header from '../components/header.vue'
+import Footer from '../components/footer.vue'
 export default {
     components:{
         projects,
-        Header
+        Header,
+        Footer
     },
     data:()=>{
         return {

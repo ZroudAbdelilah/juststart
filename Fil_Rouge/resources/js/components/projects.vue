@@ -91,8 +91,9 @@ export default {
             }
         },
         next(){
+           //  this.currentPage < this.counter ?  this.currentPage++ : this.currentPage = 1
             if(this.currentPage < this.counter){
-                this.currentPage++
+                this.currentPage++ 
             }else{
                 this.currentPage = 1
             }
