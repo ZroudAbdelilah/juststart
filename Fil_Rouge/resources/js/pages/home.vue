@@ -1,6 +1,6 @@
 <template>
     <div>
-           <Header/>
+        <Header/>
         <div class="filter border">
             <div class="container">
                 <div class="row text-center text-dark d-flex justify-content-center py-3">
@@ -103,27 +103,28 @@
 </template>
 
 <style scoped>
-a{
-    color: inherit;
-}
-.hero-header div.col-7:nth-child(1){
-    border-right: 1px solid var(--green);
-}
-.about div.col:nth-child(1){
-    border-right: 3px solid var(--green);
-}
-.news .more i{
-    transition: .3s;
-}
-.news .more{
-    transition: .3s;
-}
-.news .more:hover{
-    opacity: .7;
-}
-.news .more:hover i{
-    transform: translateX(10px);
-}
+    a{
+        color: inherit;
+    }
+    .hero-header div.col-7:nth-child(1){
+        border-right: 1px solid var(--green);
+    }
+    .about div.col:nth-child(1){
+        border-right: 3px solid var(--green);
+    }
+    .news .more i{
+        transition: .3s;
+    }
+    .news .more{
+        transition: .3s;
+    }
+    .news .more:hover{
+        opacity: .7;
+    }
+    .news .more:hover i{
+        transform: translateX(10px);
+    }
+
 </style>
 
 <script>
@@ -139,6 +140,10 @@ export default {
         SlideCard,
         Footer,
         carousel
+    },
+    data:()=>{
+        return {
+        }
     }
 }
 </script>

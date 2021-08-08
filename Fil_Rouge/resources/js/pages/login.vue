@@ -33,9 +33,6 @@
 
             <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
 
-            <hr class="my-4">
-
-            <button class="btn btn-lg btn-block btn-primary"  type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
 
           </div>
         </div>

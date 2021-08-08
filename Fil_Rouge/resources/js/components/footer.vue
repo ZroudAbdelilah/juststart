@@ -146,19 +146,22 @@
             </div>
             <!-- Grid container -->
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+           
+        </footer>
+            <!-- Footer -->
+             <!-- Copyright -->
+            <div class="text-center text-white p-3 copyright">
                 © 2021 Copyright:
                 <a class="text-white" href="#">juststart.com</a>
             </div>
             <!-- Copyright -->
-        </footer>
-            <!-- Footer -->
     </div>
 </template>
 
 <style scoped>
-
+.copyright{
+    background-color: rgb(1, 138, 47);
+    }
 </style>
 
 <script>

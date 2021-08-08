@@ -69,3 +69,9 @@ Route::middleware(['user'])->prefix('/dashboard/user')->group(function () {
 });
 
 Route::post('/admin/login', [App\Http\Controllers\adminController::class,'login']);
+
+
+
+Route::get('/test/delete/{id}', function ($id) {
+    return $id;
+});
