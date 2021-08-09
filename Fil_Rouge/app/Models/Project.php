@@ -9,7 +9,6 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable = [
-        // '',
         'name',
         'target_b',
         'description',
@@ -19,16 +18,17 @@ class Project extends Model
 
 
     public function categorys(){
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
     public function project_leader(){
-        return $this->hasOne(ProjectLeader::class);
+        return $this->belongsTo(ProjectLeader::class);
     }
+    
 
     public function tags()
-{
-    return $this->belongsToMany('App\Models\Tag','tags_has_projects','projects_id','tags_id');
-}
+    {
+        return $this->belongsToMany('App\Models\Tag','tags_has_projects','projects_id','tags_id');
+    }
 
     
 }

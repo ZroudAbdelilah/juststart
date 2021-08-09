@@ -6,7 +6,13 @@ import tags from './pages/dashboard/tags.vue'
 import addProject from './pages/dashboard/add-project.vue'
 const routes = [
     {path : '' ,  component : home},
-    {path : 'projects' ,  component : projects},
+    {
+        path : 'projects' ,  
+        component : projects,
+        children:[
+            {path: 'add' , addProject}
+        ]
+    },
     {path : 'users' ,  component : users},
     {path : 'categories' ,  component : categories},
     {path : 'tags' ,  component : tags},

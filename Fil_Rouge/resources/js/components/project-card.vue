@@ -1,45 +1,44 @@
 <template>
     <div>
         <div class="project-card">
-            <div>
-                <div class="thumbnail">
-                <img src="/img/product-thumbnail.jpg" alt="">
-            </div>
-            <div class="details">
-                <div class="title">
-                    <h2>{{ product.title }}</h2>
-                </div>
-                <div class="description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus architecto, quibusdam perspiciatis hic eligendi illo ipsum error natus, laborum magnam, placeat illum rem. Minus rem velit ea, cumque sunt alias.</p>
-                </div>
-                <div class="author">
-                    <span>By Zroud</span>
-                </div>
-                <div class="progress-br">
-                    <div class="full">
-                        <div style="width:50%;" class="progress"></div>
+            <router-link to="/">
+                <div>
+                    <div class="thumbnail">
+                        <img :src=product.thumbnail :alt=product.name>
                     </div>
-                    <div class="percentage">
-                        <div class="min"><span>0%</span></div>
-                        <div class="max"><span>100%</span></div>
+                    <div class="details">
+                        <div class="title">
+                            <h2>{{ product.name }}</h2>
+                        </div>
+                        <div class="description">
+                            <p>{{ product.description }}</p>
+                        </div>
+                        <div class="author">
+                            <span>By {{product.project_leader.username}}</span>
+                        </div>
+                        <div class="progress-br">
+                            <div class="full">
+                                <div :style="'width:'+((product.invested/product.target_b)*100)+'%;max-width:100%'" class="progress"></div>
+                            </div>
+                            <div class="percentage">
+                                <div class="min"><span>0%</span></div>
+                                <div class="max"><span>100%</span></div>
+                            </div>
+                        </div>
+                        <div class="request">
+                            <span>{{ product.invested }}$ engagés</span>
+                        </div>
+                        <div class="days">
+                            <span>Rest {{restDays}} <span v-if="(restDays > 1)">jours</span><span v-if="(restDays == 1)">jour</span></span>
+                        </div>
+                        <div class="footer">
+                            <div class="categories">
+                                <span>{{ product.categorys.name }}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="request">
-                    <span>3456$ engagés</span>
-                </div>
-                <div class="days">
-                    <span>Rest 19 jours</span>
-                </div>
-                <div class="footer">
-                    <div class="categories">
-                        <span>Category</span>
-                    </div>
-                    <div class="adress">
-                        <span><i class="fa fa-map-marker-alt"></i>Adress</span>
-                    </div>
-                </div>
-            </div>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -113,12 +112,36 @@
     color:var(--green);
     margin-right: 8px;
 }
+a{
+    color: inherit;
+    text-decoration: none;
+}
 </style>
 
 <script>
 export default {
+    data:()=>{
+        return {
+            restDays:0
+        }
+    },
     props:{
         product:{}
+    },
+    created(){
+        this.getRestDays()
+    },
+    methods:{
+        getRestDays(){
+            var date1 = new Date();
+            var date2 = new Date(this.product.d_line);
+            // To calculate the time difference of two dates
+            var Difference_In_Time = date2.getTime() - date1.getTime();
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            //To display the final no. of days (result)
+            this.restDays = Difference_In_Days.toFixed(0)
+        }
     }
 }
 </script>

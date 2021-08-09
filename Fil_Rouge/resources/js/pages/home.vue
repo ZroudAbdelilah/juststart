@@ -20,20 +20,20 @@
                     <div class="col-7 py-5 px-5">
                         <div class="main-Item">
                             <div class="thumbnail mb-3">
-                                <img class="img-responsive w-100" src="/img/hero-header-main.png" alt="#">
+                                <img class="img-responsive w-100" :src=bestInvested.thumbnail alt="#">
                                 <div class="progress rounded-0">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success" role="progressbar" :style="'width: '+((bestInvested.invested/bestInvested.target_b)*100).toFixed(0)+'%'" :aria-valuenow="((bestInvested.invested/bestInvested.terget_b)*100)" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="details">
                                 <div class="title">
-                                    <h1>Dummy title</h1>
+                                    <h1>{{ bestInvested.name }}</h1>
                                 </div>
                                 <div class="description">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, tempore odit repellendus debitis ex iusto veritatis est voluptatibus doloremque deserunt praesentium mollitia qui dolorum hic, ipsam sequi temporibus veniam odio.</p>
+                                    <p>{{ bestInvested.description }}</p>
                                 </div>
                                 <div class="author">
-                                    <span>Par</span><span>Abdelilah Zroud</span>
+                                    <span>Par </span><span>{{bestInvested.project_leader.username}}</span>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                     <div class="col-5 py-5 px-3">
                         <span class="dispaly-6">Rien que pour vous</span>
                         <div style="height:450px;overflow-y:auto;">
-                            <card-horizontal v-for="i in 18" :key=i />
+                            <card-horizontal v-for="project,key in latested" :key=key :project=project />
                         </div>
                     </div>
                 </div>
@@ -69,28 +69,9 @@
                             <span class="text-success more small ml-3">Discover more <i class="fa fa-arrow-right"></i></span>
                         </div>
                         <div class="mb-5 mt-2">
-                            <carousel :autoplay="true" :nav="false">
-                                    <div v-for="i in 9" :key=i>
-                                        <SlideCard class="p-2"  />
-                                    </div>
-                            </carousel>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="news my-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="d-block h6 mt-3 px-2">
-                            <span>LES NOUVEAUTES QUI NOUS PLAISENT</span>
-                            <span class="text-success more small ml-3">Discover more <i class="fa fa-arrow-right"></i></span>
-                        </div>
-                        <div class="mb-5 mt-2">
-                            <carousel :autoplay="true" :nav="false">
-                                    <div v-for="i in 9" :key=i>
-                                        <SlideCard class="p-2"  />
+                            <carousel :autoplay="true" :nav="false" :key=step>
+                                    <div style="width:fit-content;"  v-for="project,key in projects" :key=key>
+                                        <SlideCard :project=project class="p-2" />
                                     </div>
                             </carousel>
                         </div>
@@ -127,12 +108,16 @@
 
 </style>
 
+
 <script>
 import Header from '../components/header.vue'
 import cardHorizontal from '../components/card-horizontal.vue'
 import SlideCard from '../components/slide-card.vue'
 import Footer from '../components/footer.vue'
 import carousel from 'vue-owl-carousel'
+
+// api
+import axios from 'axios'
 export default {
     components:{
         Header,
@@ -143,6 +128,38 @@ export default {
     },
     data:()=>{
         return {
+            projects:[],
+            bestInvested:{},
+            latested:[],
+            step:0
+        }
+    },
+    created(){
+        this.getBestInvested()
+        this.getLatested()
+        this.getAllProjects()
+    },
+    methods:{
+        getBestInvested(){
+            axios.get('http://127.0.0.1:8000/api/projects/best-invest').then(response => {
+                if(response.status == 200)
+                    this.bestInvested = response.data
+            })
+        },
+        getLatested(){
+            axios.get('http://127.0.0.1:8000/api/projects/latest').then(response=>{
+                if(response.status == 200)
+                this.latested = response.data
+            })
+        },
+        getAllProjects(){
+            axios.get('http://127.0.0.1:8000/api/projects').then(response=>{
+                if(response.status == 200)
+                this.projects = response.data
+
+                console.log(response);
+                this.step++
+            })
         }
     }
 }

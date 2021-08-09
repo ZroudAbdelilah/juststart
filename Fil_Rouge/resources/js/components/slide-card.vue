@@ -1,24 +1,23 @@
 <template>
-    <div>
+    <div style="width:fit-content;">
         <div class="card" style="width: 18rem;">
             <div class="thumbnail">
                 <img
-        src="/img/img2.png"
+        :src=project.thumbnail
         class="card-img-top"
-        alt=""
+        :alt=project.name
         />
         <div class="progress">
-            <div class="progress-bar bg-success" style="width: 25%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" :style="'width: '+((project.invested/project.target_b)*100).toFixed(0)+'%'" role="progressbar" :aria-valuenow=((project.invested/project.target_b)*100).toFixed(0) aria-valuemin="0" aria-valuemax="100"></div>
         </div>
             </div>
         <div class="card-body">
-        <h3>tiltle</h3>
+        <h3>{{project.name}}</h3>
         <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the
-        card's content.
+        {{project.description.substring(0,70)}}
         </p>
         <div class="author">
-                    <small class="text-muted">By Zroud</small>
+                    <small class="text-muted">By {{project.project_leader.username}}</small>
         </div>
         </div>
         </div>
@@ -42,6 +41,11 @@
 
 <script>
 export default {
-    
+    props:{
+        project:Object
+    },
+    created(){
+        console.log(this.project);
+    }
 }
 </script>

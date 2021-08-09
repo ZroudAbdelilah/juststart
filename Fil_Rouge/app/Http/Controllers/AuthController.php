@@ -12,6 +12,7 @@ class AuthController extends Controller
 {
     //
     public function register(Request $request){
+        // dd("test");
         $fields = $request->validate([
             'username'=> 'required|string',
             'email'=>'required|string|unique:users,email',
@@ -49,11 +50,12 @@ class AuthController extends Controller
 
         return response($response,201);
     }
-    public function logout(Request $request){
-        auth()->user()->tokens()->delete();
-        return[
-            'message' => 'logged out'
-        ];
+    public function logout($id){
+        if(User::where('id',$id)->update(['token' => null])){
+            return [
+                'message' => 'logged out'
+            ];
+        }
     }
     public function login(Request $request){
         $fields = $request->validate([

@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-auto p-3">
                         <div class="logout">
-                            <a href="#" class="bnt bnt-link"><i class="fa fa-sign-out-alt text-white h3"></i></a>
+                            <a @click="logout()" class="bnt bnt-link"><i class="fa fa-sign-out-alt text-white h3"></i></a>
                         </div>
                     </div>
                 </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     props:
         ['toggleSideBar']
@@ -33,6 +34,15 @@ export default {
         // toggleSlider(){
         //     this.$emit('toggle')
         // }
+        logout(){
+            axios.get('http://127.0.0.1:8000/api/logout/'+JSON.parse(localStorage.getItem('user')).id).then(response=>{
+                if(response.status == 200){
+                    console.log(response);
+                    localStorage.removeItem('token')
+                    this.$router.push('/login')
+                }
+            })
+        }
     }
 }
 </script>

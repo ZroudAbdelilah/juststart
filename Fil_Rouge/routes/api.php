@@ -30,6 +30,7 @@ Route::post('/user/register',[AuthController::class,'register']);
 Route::post('/user/login',[AuthController::class,'login']);
 Route::post('/leaderproject/register',[AuthProjectLeaderController::class,'register']);
 Route::post('/leaderproject/login',[AuthProjectLeaderController::class,'login']);
+Route::get('/logout/{id}',[AuthController::class,'logout']);
 
 //Protected routes
 
@@ -75,3 +76,10 @@ Route::post('/admin/login', [App\Http\Controllers\adminController::class,'login'
 Route::get('/test/delete/{id}', function ($id) {
     return $id;
 });
+
+
+// Front office routes
+
+Route::get('/projects', [App\Http\Controllers\ProjectController::class,'index']);
+Route::get('/projects/latest', [App\Http\Controllers\ProjectController::class,'latest']);
+Route::get('/projects/best-invest', [App\Http\Controllers\ProjectController::class,'BestInvest']);

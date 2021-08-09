@@ -14,7 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        return Project::with(['tags'])->get();
+        return Project::with(['tags','project_leader','categorys'])->get();
     }
 
     /**
@@ -78,5 +78,15 @@ class ProjectController extends Controller
     {
         //
         return Project::where('name','like','%'.$name.'%')->get();
+    }
+
+
+    public function latest(){
+        return Project::with(['project_leader'])->orderBy('id','DESC')->limit(4)->get();
+    }
+
+    public function BestInvest()
+    {
+        return Project::with(['project_leader'])->orderBy('invested','DESC')->first();
     }
 }

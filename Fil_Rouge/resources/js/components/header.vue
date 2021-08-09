@@ -11,20 +11,20 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+            <router-link class="nav-link" to="/">Accueil <span class="sr-only">(current)</span></router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Découvrir Projets</a>
+            <router-link class="nav-link" to="/projects">Découvrir Projets</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Démarrer Un Projet</a>
+            <router-link to="/porteurproject/register"  class="nav-link">Démarrer Un Projet</router-link>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit"><i  class="fas fa-search"></i></button>
-          <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Connexion</button>
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">S'inscrire</button>
+          <router-link to="/login" class="btn btn-outline-success my-2 my-sm-0 mr-2" >Connexion</router-link>
+          <router-link class="btn btn-outline-primary my-2 my-sm-0" to="/register" >S'inscrire</router-link>
         </form>
   </div>
 </nav>

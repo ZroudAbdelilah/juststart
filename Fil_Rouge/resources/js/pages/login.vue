@@ -11,12 +11,12 @@
             <h3 class="mb-5">Sign in</h3>
 
             <div class="form-outline mb-4">
-              <input type="email" placeholder="Email" id="typeEmailX" class="form-control form-control-lg" />
+              <input v-model="email" type="email" placeholder="Email" id="typeEmailX" class="form-control form-control-lg" />
               <!-- <label class="form-label" for="typeEmailX">Email</label> -->
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password"  placeholder="Password" id="typePasswordX" class="form-control form-control-lg" />
+              <input v-model="password" type="password"  placeholder="Password" id="typePasswordX" class="form-control form-control-lg" />
               <!-- <label class="form-label" for="typePasswordX">Password</label> -->
             </div>
 
@@ -31,7 +31,7 @@
               <label class="form-check-label" for="form1Example3"> Remember password </label>
             </div>
 
-            <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
+            <button @click="login()" class="btn btn-success btn-lg btn-block" type="submit">Login</button>
 
 
           </div>
@@ -56,5 +56,34 @@ export default {
         Header,
         Footer
     },
+    data:()=>{
+      return{
+        email:'',
+        password:''
+      }
+    },
+    methods:{
+      login(){
+        if(this.validate()){
+          axios.post('http://127.0.0.1:8000/api/user/login',{
+                'email': this.email,
+                'password': this.password,
+              }).then(response=>{
+                if(response.status == 201 && response.data.token !== ''){
+                  console.log(response);
+                  localStorage.setItem('token',response.data.token)
+                  localStorage.setItem('user',JSON.stringify(response.data.user))
+                  this.$router.push('/dashboard')
+                }
+              })
+        }
+      },
+      validate(){
+        if(this.email == '') return false
+        if(this.password == '') return false
+
+        return true
+      }
+    }
 }
 </script>

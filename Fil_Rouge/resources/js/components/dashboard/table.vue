@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="display table-bordered nowrap" cellspacing="0" width="100%">
+        <table class="display table-bordered nowrap table-responsive" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th v-for="(colum,key) in colums" :key=key >{{ colum }}</th>
@@ -66,7 +66,13 @@ export default {
                 cancelButtonText: 'No, keep it'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.get(this.deleteUrl+'/'+id).then(response => {
+                    axios({
+                        method:'DELETE',
+                        url:this.deleteUrl+'/'+id,
+                        headers:{
+                            'token' : localStorage.getItem('token')
+                        }
+                    }).then(response => {
                         if(response.status == 200 && response.data == 1){
                             this.rows.forEach((row,index) => {
                                 if(row[0] == id){

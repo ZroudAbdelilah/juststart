@@ -9,7 +9,7 @@ import RegisterPorteurProject from'./pages/register-leaderproject.vue'
 import dashboardRoutes from './dashboard-routes'
 
 const routes = [
-    {path : '/project', component: projectPage},
+    {path : '/projects', component: projectPage},
     {path : '/contact', component : Contact},
     {path : '/test', component : Test},
     {path : '/login', component : Login},
@@ -20,7 +20,15 @@ const routes = [
     // dashboard
     {
         path : '/dashboard' , component : dashboard,
-        children : dashboardRoutes
+        children : dashboardRoutes,
+        beforeEnter: (to, from, next) => {
+            if(localStorage.getItem('token')){
+                next()
+            }else{
+            window.location.href = "/login"
+             next(false)
+            }
+          }
     }
 ]
 export default routes
