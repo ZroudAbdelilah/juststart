@@ -17,7 +17,7 @@
         <div class="hero-header">
             <div class="container">
                 <div class="row my-3">
-                    <div class="col-7 py-5 px-5">
+                    <div class="col-12 col-md-7 py-5 px-5">
                         <div class="main-Item">
                             <div class="thumbnail mb-3">
                                 <img class="img-responsive w-100" :src=bestInvested.thumbnail alt="#">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-5 py-5 px-3">
+                    <div class="col-12 d-none d-md-block col-md-5 py-5 px-3">
                         <span class="dispaly-6">Rien que pour vous</span>
                         <div style="height:450px;overflow-y:auto;">
                             <card-horizontal v-for="project,key in latested" :key=key :project=project />
@@ -50,12 +50,12 @@
         <div class="about py-5 mb-3">
             <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12 col-md-6 mb-md-3">
                         <img src="/img/about.png" alt="#" class="img-responsive w-100">
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-6">
                         <span class="h3 mb-4 d-block">JUSTSTART existe pour permettre à des projets créatifs de voir le jour.</span>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius nulla, qui ullam velit earum perferendis omnis quia aspernatur vitae consequuntur distinctio corporis rerum maxime ipsam eum, repudiandae eos dolores cum.</p>
+                        <p>Nous sommes convaincus que l'art et l'expression créative sont indispensables à une société vivante et épanouie, et que les espaces créatifs ont besoin de protection.</p>
                     </div>
                 </div>
             </div>
@@ -69,11 +69,16 @@
                             <span class="text-success more small ml-3">Discover more <i class="fa fa-arrow-right"></i></span>
                         </div>
                         <div class="mb-5 mt-2">
-                            <carousel :autoplay="true" :nav="false" :key=step>
+                            <carousel v-if="(!isMobile)" :autoplay="true" :nav="false" :loop=true :center=true :key=step :responsive="{0:{items:1,autoWidth:true,nav:false},400:{items:1,nav:false},600:{items:2,nav:false},700:{items:auto}}">
                                     <div style="width:fit-content;"  v-for="project,key in projects" :key=key>
                                         <SlideCard :project=project class="p-2" />
                                     </div>
                             </carousel>
+                            <div v-if="(isMobile)" class="slider-grid">
+                                <div style="width:fit-content;"  v-for="project,key in projects" :key=key>
+                                    <SlideCard :project=project class="p-2" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,7 +110,15 @@
     .news .more:hover i{
         transform: translateX(10px);
     }
-
+    .slider-grid{
+        display: grid;
+    }
+@media  (max-width:640px) {
+    .slider-grid{
+        grid-template-columns: repeat(1,1fr);
+        justify-items: center;
+    }
+}
 </style>
 
 
@@ -131,13 +144,18 @@ export default {
             projects:[],
             bestInvested:{},
             latested:[],
-            step:0
+            step:0,
+            isMobile:false
         }
     },
     created(){
         this.getBestInvested()
         this.getLatested()
         this.getAllProjects()
+        this.ifMobile()
+        window.addEventListener("resize", function() {
+            this.ifMobile()
+        })
     },
     methods:{
         getBestInvested(){
@@ -160,6 +178,12 @@ export default {
                 console.log(response);
                 this.step++
             })
+        },
+        ifMobile(){
+            let width = document.documentElement.clientWidth;
+            if(width <= 768){
+                this.isMobile = true
+            }
         }
     }
 }

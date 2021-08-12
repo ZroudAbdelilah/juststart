@@ -2430,6 +2430,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     window.addEventListener('scroll', function () {
@@ -2680,12 +2686,19 @@ __webpack_require__.r(__webpack_exports__);
     return {
       currentPage: 1,
       page: [],
-      counter: 0
+      counter: 0,
+      key: 0
     };
   },
   created: function created() {
+    var _this = this;
+
     this.page = this.pages.slice(0, this.maxCard);
     this.counter = Math.ceil(parseInt(this.pages.length) / parseInt(this.maxCard));
+    this.responsive();
+    window.addEventListener('resize', function () {
+      _this.responsive();
+    });
   },
   watch: {
     currentPage: function currentPage() {
@@ -2715,6 +2728,22 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.currentPage = 1;
       }
+    },
+    responsive: function responsive() {
+      this.colss = this.cols;
+      var width = document.documentElement.clientWidth;
+
+      if (width < 700) {
+        this.cols = 1;
+        return true;
+      }
+
+      if (width < 1000) {
+        this.cols = 2;
+        return true;
+      }
+
+      this.key++;
     }
   }
 });
@@ -2732,6 +2761,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3404,6 +3438,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3424,13 +3471,18 @@ __webpack_require__.r(__webpack_exports__);
       projects: [],
       bestInvested: {},
       latested: [],
-      step: 0
+      step: 0,
+      isMobile: false
     };
   },
   created: function created() {
     this.getBestInvested();
     this.getLatested();
     this.getAllProjects();
+    this.ifMobile();
+    window.addEventListener("resize", function () {
+      this.ifMobile();
+    });
   },
   methods: {
     getBestInvested: function getBestInvested() {
@@ -3455,6 +3507,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         _this3.step++;
       });
+    },
+    ifMobile: function ifMobile() {
+      var width = document.documentElement.clientWidth;
+
+      if (width <= 768) {
+        this.isMobile = true;
+      }
     }
   }
 });
@@ -4221,7 +4280,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-798ca618]{\r\n  top: 0;\r\n  background-color: #ffffff;\r\n  position: sticky;\r\n  z-index: 9;\n}\n.shadow[data-v-798ca618]{\r\n  box-shadow: rgb(139 138 138 / 18%) 0px 3px 6px !important;\n}\na[data-v-798ca618]{\r\n    color: inherit;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-798ca618]{\r\n  top: 0;\r\n  background-color: #ffffff;\r\n  position: sticky;\r\n  z-index: 9;\n}\n.shadow[data-v-798ca618]{\r\n  box-shadow: rgb(139 138 138 / 18%) 0px 3px 6px !important;\n}\na[data-v-798ca618]{\r\n    color: inherit;\n}\nspan.navbar-toggler-icon[data-v-798ca618] {\r\n    height: -webkit-fit-content;\r\n    height: -moz-fit-content;\r\n    height: fit-content;\r\n    width: -webkit-fit-content;\r\n    width: -moz-fit-content;\r\n    width: fit-content;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4293,7 +4352,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.thumbnail[data-v-c20d1f92]{\r\n    position: relative;\n}\n.thumbnail .progress[data-v-c20d1f92]{\r\n    border-radius: 0px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    height: 8px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media screen and (max-width:400px) {\n.slide-card[data-v-c20d1f92]{\r\n     width: 90vw !important;\n}\n}\n.thumbnail[data-v-c20d1f92]{\r\n    position: relative;\n}\n.thumbnail .progress[data-v-c20d1f92]{\r\n    border-radius: 0px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    height: 8px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4341,7 +4400,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na[data-v-bb7a9770]{\n    color: inherit;\n}\n.hero-header div.col-7[data-v-bb7a9770]:nth-child(1){\n    border-right: 1px solid var(--green);\n}\n.about div.col[data-v-bb7a9770]:nth-child(1){\n    border-right: 3px solid var(--green);\n}\n.news .more i[data-v-bb7a9770]{\n    transition: .3s;\n}\n.news .more[data-v-bb7a9770]{\n    transition: .3s;\n}\n.news .more[data-v-bb7a9770]:hover{\n    opacity: .7;\n}\n.news .more:hover i[data-v-bb7a9770]{\n    transform: translateX(10px);\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na[data-v-bb7a9770]{\n        color: inherit;\n}\n.hero-header div.col-7[data-v-bb7a9770]:nth-child(1){\n        border-right: 1px solid var(--green);\n}\n.about div.col[data-v-bb7a9770]:nth-child(1){\n        border-right: 3px solid var(--green);\n}\n.news .more i[data-v-bb7a9770]{\n        transition: .3s;\n}\n.news .more[data-v-bb7a9770]{\n        transition: .3s;\n}\n.news .more[data-v-bb7a9770]:hover{\n        opacity: .7;\n}\n.news .more:hover i[data-v-bb7a9770]{\n        transform: translateX(10px);\n}\n.slider-grid[data-v-bb7a9770]{\n        display: grid;\n}\n@media  (max-width:640px) {\n.slider-grid[data-v-bb7a9770]{\n        grid-template-columns: repeat(1,1fr);\n        justify-items: center;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -25454,7 +25513,11 @@ var staticRenderFns = [
           "aria-label": "Toggle navigation"
         }
       },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
+      [
+        _c("span", { staticClass: "navbar-toggler-icon" }, [
+          _c("i", { staticClass: "fa fa-bars" })
+        ])
+      ]
     )
   },
   function() {
@@ -25596,6 +25659,7 @@ var render = function() {
       _c(
         "div",
         {
+          key: _vm.key,
           staticClass: "projects",
           style: "grid-template-columns: repeat(" + _vm.cols + ",1fr);"
         },
@@ -25676,53 +25740,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticStyle: { width: "fit-content" } }, [
-    _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
-      _c("div", { staticClass: "thumbnail" }, [
-        _c("img", {
-          staticClass: "card-img-top",
-          attrs: { src: _vm.project.thumbnail, alt: _vm.project.name }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "progress" }, [
-          _c("div", {
-            staticClass: "progress-bar bg-success",
-            style:
-              "width: " +
-              ((_vm.project.invested / _vm.project.target_b) * 100).toFixed(0) +
-              "%",
-            attrs: {
-              role: "progressbar",
-              "aria-valuenow": (
-                (_vm.project.invested / _vm.project.target_b) *
-                100
-              ).toFixed(0),
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(
-            "\n    " +
-              _vm._s(_vm.project.description.substring(0, 70)) +
-              "\n    "
-          )
+  return _c(
+    "div",
+    { staticClass: "slide-card", staticStyle: { width: "fit-content" } },
+    [
+      _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
+        _c("div", { staticClass: "thumbnail" }, [
+          _c("img", {
+            staticClass: "card-img-top",
+            attrs: { src: _vm.project.thumbnail, alt: _vm.project.name }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "progress" }, [
+            _c("div", {
+              staticClass: "progress-bar bg-success",
+              style:
+                "width: " +
+                ((_vm.project.invested / _vm.project.target_b) * 100).toFixed(
+                  0
+                ) +
+                "%",
+              attrs: {
+                role: "progressbar",
+                "aria-valuenow": (
+                  (_vm.project.invested / _vm.project.target_b) *
+                  100
+                ).toFixed(0),
+                "aria-valuemin": "0",
+                "aria-valuemax": "100"
+              }
+            })
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "author" }, [
-          _c("small", { staticClass: "text-muted" }, [
-            _vm._v("By " + _vm._s(_vm.project.project_leader.username))
+        _c("div", { staticClass: "card-body" }, [
+          _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(
+              "\n    " +
+                _vm._s(_vm.project.description.substring(0, 70)) +
+                "\n    "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "author" }, [
+            _c("small", { staticClass: "text-muted" }, [
+              _vm._v("By " + _vm._s(_vm.project.project_leader.username))
+            ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -26323,7 +26393,7 @@ var render = function() {
       _c("div", { staticClass: "hero-header" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row my-3" }, [
-            _c("div", { staticClass: "col-7 py-5 px-5" }, [
+            _c("div", { staticClass: "col-12 col-md-7 py-5 px-5" }, [
               _c("div", { staticClass: "main-Item" }, [
                 _c("div", { staticClass: "thumbnail mb-3" }, [
                   _c("img", {
@@ -26374,23 +26444,27 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-5 py-5 px-3" }, [
-              _c("span", { staticClass: "dispaly-6" }, [
-                _vm._v("Rien que pour vous")
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticStyle: { height: "450px", "overflow-y": "auto" } },
-                _vm._l(_vm.latested, function(project, key) {
-                  return _c("card-horizontal", {
-                    key: key,
-                    attrs: { project: project }
-                  })
-                }),
-                1
-              )
-            ])
+            _c(
+              "div",
+              { staticClass: "col-12 d-none d-md-block col-md-5 py-5 px-3" },
+              [
+                _c("span", { staticClass: "dispaly-6" }, [
+                  _vm._v("Rien que pour vous")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticStyle: { height: "450px", "overflow-y": "auto" } },
+                  _vm._l(_vm.latested, function(project, key) {
+                    return _c("card-horizontal", {
+                      key: key,
+                      attrs: { project: project }
+                    })
+                  }),
+                  1
+                )
+              ]
+            )
           ])
         ])
       ]),
@@ -26407,24 +26481,61 @@ var render = function() {
                 "div",
                 { staticClass: "mb-5 mt-2" },
                 [
-                  _c(
-                    "carousel",
-                    { key: _vm.step, attrs: { autoplay: true, nav: false } },
-                    _vm._l(_vm.projects, function(project, key) {
-                      return _c(
-                        "div",
-                        { key: key, staticStyle: { width: "fit-content" } },
-                        [
-                          _c("SlideCard", {
-                            staticClass: "p-2",
-                            attrs: { project: project }
-                          })
-                        ],
-                        1
+                  !_vm.isMobile
+                    ? _c(
+                        "carousel",
+                        {
+                          key: _vm.step,
+                          attrs: {
+                            autoplay: true,
+                            nav: false,
+                            loop: true,
+                            center: true,
+                            responsive: {
+                              0: { items: 1, autoWidth: true, nav: false },
+                              400: { items: 1, nav: false },
+                              600: { items: 2, nav: false },
+                              700: { items: _vm.auto }
+                            }
+                          }
+                        },
+                        _vm._l(_vm.projects, function(project, key) {
+                          return _c(
+                            "div",
+                            { key: key, staticStyle: { width: "fit-content" } },
+                            [
+                              _c("SlideCard", {
+                                staticClass: "p-2",
+                                attrs: { project: project }
+                              })
+                            ],
+                            1
+                          )
+                        }),
+                        0
                       )
-                    }),
-                    0
-                  )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isMobile
+                    ? _c(
+                        "div",
+                        { staticClass: "slider-grid" },
+                        _vm._l(_vm.projects, function(project, key) {
+                          return _c(
+                            "div",
+                            { key: key, staticStyle: { width: "fit-content" } },
+                            [
+                              _c("SlideCard", {
+                                staticClass: "p-2",
+                                attrs: { project: project }
+                              })
+                            ],
+                            1
+                          )
+                        }),
+                        0
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -26446,14 +26557,14 @@ var staticRenderFns = [
     return _c("div", { staticClass: "about py-5 mb-3" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col" }, [
+          _c("div", { staticClass: "col-12 col-md-6 mb-md-3" }, [
             _c("img", {
               staticClass: "img-responsive w-100",
               attrs: { src: "/img/about.png", alt: "#" }
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
+          _c("div", { staticClass: "col-12 col-md-6" }, [
             _c("span", { staticClass: "h3 mb-4 d-block" }, [
               _vm._v(
                 "JUSTSTART existe pour permettre à des projets créatifs de voir le jour."
@@ -26462,7 +26573,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius nulla, qui ullam velit earum perferendis omnis quia aspernatur vitae consequuntur distinctio corporis rerum maxime ipsam eum, repudiandae eos dolores cum."
+                "Nous sommes convaincus que l'art et l'expression créative sont indispensables à une société vivante et épanouie, et que les espaces créatifs ont besoin de protection."
               )
             ])
           ])

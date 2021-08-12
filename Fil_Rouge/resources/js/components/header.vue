@@ -5,7 +5,9 @@
                 <img src="/img/juststart.png" alt="logo" width="100" class="logo img-fluid">
             </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon">
+          <i class="fa fa-bars"></i>
+        </span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -46,6 +48,10 @@
 }
 a{
     color: inherit;
+}
+span.navbar-toggler-icon {
+    height: fit-content;
+    width: fit-content;
 }
 </style>
 

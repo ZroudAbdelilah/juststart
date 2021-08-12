@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="margin-block: 32px;">
-            <div class="projects" :style="'grid-template-columns: repeat('+cols+',1fr);'">
+            <div class="projects" :key=key :style="'grid-template-columns: repeat('+cols+',1fr);'">
                 <projectCard v-for="(project,index) in page" :product=project :key="index" />
             </div>
             <div class="dots">
@@ -62,12 +62,17 @@ export default {
         return{
             currentPage:1,
             page:[],
-            counter:0
+            counter:0,
+            key:0
         }
     },
     created(){
         this.page = this.pages.slice(0,this.maxCard)
         this.counter = Math.ceil(parseInt(this.pages.length)/parseInt(this.maxCard))
+        this.responsive()
+        window.addEventListener('resize',()=>{
+            this.responsive()
+        });
     },
     watch:{
         currentPage(){
@@ -97,6 +102,13 @@ export default {
             }else{
                 this.currentPage = 1
             }
+        },
+        responsive(){
+            this.colss = this.cols
+            let width = document.documentElement.clientWidth
+            if(width < 700){this.cols=1;return true;}
+            if(width < 1000){this.cols=2;return true;}
+            this.key++
         }
     }
 }

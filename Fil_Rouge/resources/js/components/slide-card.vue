@@ -1,5 +1,5 @@
 <template>
-    <div style="width:fit-content;">
+    <div class="slide-card" style="width:fit-content;">
         <div class="card" style="width: 18rem;">
             <div class="thumbnail">
                 <img
@@ -26,6 +26,11 @@
 </template>
 
 <style scoped>
+@media screen and (max-width:400px) {
+    .slide-card{
+     width: 90vw !important;
+    }
+}
 .thumbnail{
     position: relative;
 }
