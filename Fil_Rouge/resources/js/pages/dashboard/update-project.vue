@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container-fluid">
-            <h1 class="mb-5">Add Projects</h1>
+            <h1 class="mb-5">Update Projects</h1>
             <div class="row">
                 <div class="col-12 p-3 bg-white shadow-sm">
                     <div v-if="errMessage !== ''" class="alert alert-danger mb-3">
@@ -30,8 +30,8 @@
                             <div class="form-group col-4">
                                 <label for="categorys_id">Category:</label>
                                 <select :key=key @change="setCategory"  id="categorys_id" name="categorys_id" class="form-control">
-                                    <option value="" disabled selected>Category...</option>
-                                    <option v-for="category,key in categories" :key=key :value="category.id">{{ category.name }}</option>
+                                    <option value="" disabled>Category...</option>
+                                    <option :selected="(category.id == categorys_id)?true:false" v-for="category,key in categories" :key=key :value="category.id">{{ category.name }}</option>
                                 </select>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col"></div>
                             <div class="col-auto">
-                                <button class="btn btn-primary btn-lg" type="submit">Save</button>
+                                <button class="btn btn-primary btn-lg" type="submit">Update</button>
                             </div>
                         </div>
                         </form>
@@ -80,14 +80,36 @@ export default {
             'categorys_id':'',
             'project_leader_id':JSON.parse(localStorage.getItem('user')).id,
             'categories' : [],
+            'project' : [],
             'key' : 0,
             'errMessage' :''
         }
     },
+    props:['id'],
     created(){
         this.getCategories()
+        this.getProject()
     },
     methods:{
+        getProject(){
+            axios.get('http://localhost:8000/api/dashboard/admin/projects/'+this.id,{
+                headers:{
+                    token: localStorage.getItem('admin_token')
+                }
+            }).then(response=>{
+                if(response.status == 200){
+                    this.project = response.data;
+                    this.name = this.project.name;
+                    this.target_b = this.project.target_b;
+                    this.invested = this.project.invested;
+                    this.description = this.project.description;
+                    this.d_line = this.project.d_line;
+                    this.thumbnail = this.project.thumbnail;
+                    this.categorys_id = this.project.categorys_id;
+                    this.project_leader_id = this.project.project_leader_id
+                }
+            })
+        },
         setCategory(event){
             this.categorys_id = event.target.value
         },
@@ -101,8 +123,8 @@ export default {
         addProject(){
             if(this.validate()){
                 axios({
-                    url:'http://127.0.0.1:8000/api/dashboard/admin/projects',
-                    method:'POST',
+                    url:'http://127.0.0.1:8000/api/dashboard/admin/projects/'+this.id,
+                    method:'PUT',
                     headers:{
                         id:this.project_leader_id,
                         token:localStorage.getItem('admin_token')
@@ -118,7 +140,7 @@ export default {
                         'project_leader_id': this.project_leader_id
                     }
                 }).then(response=>{
-                    if(response.status == 201)
+                    if(response.status == 200)
                         this.$router.push('/dashboard/projects')
                 }).catch(error=>{
                     console.error(error);

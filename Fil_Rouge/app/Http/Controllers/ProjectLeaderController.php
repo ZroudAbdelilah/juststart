@@ -67,4 +67,8 @@ class ProjectLeaderController extends Controller
         //
         return ProjectLeader::destroy($id);
     }
+
+    public function getCount(){
+        return ProjectLeader::count();
+    }
 }

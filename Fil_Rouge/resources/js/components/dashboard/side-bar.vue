@@ -13,7 +13,6 @@
                         <li><router-link to="/dashboard/projects" class="btn btn-link pl-3 px-2 py-3 w-100 d-block text-left h3"><i class="fa fa-suitcase h3 m-0 mr-3"></i> Projects</router-link></li>
                         <li><router-link to="/dashboard/users" class="btn btn-link pl-3 px-2 py-3 w-100 d-block text-left h3"><i class="fa fa-users h3 m-0 mr-3"></i> Users</router-link></li>
                         <li><router-link to="/dashboard/categories" class="btn btn-link pl-3 px-2 py-3 w-100 d-block text-left h3"><i class="fa fa-boxes h3 m-0 mr-3"></i> Categories</router-link></li>
-                        <li><router-link to="/dashboard/tags" class="btn btn-link pl-3 px-2 py-3 w-100 d-block text-left h3"><i class="fa fa-tags h3 m-0 mr-3"></i> Tags</router-link></li>
                     </ul>
                 </nav>
             </div>
@@ -53,6 +52,6 @@ li:hover a{color: #ffffff; text-decoration: none}
 </style>
 <script>
 export default {
-    
+
 }
 </script>

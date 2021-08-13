@@ -13,7 +13,10 @@ class Project extends Model
         'target_b',
         'description',
         'd_line',
-        'thumbnail'
+        'thumbnail',
+        'invested',
+        'categorys_id',
+        'project_leader_id'
     ];
 
 
@@ -23,12 +26,12 @@ class Project extends Model
     public function project_leader(){
         return $this->belongsTo(ProjectLeader::class);
     }
-    
+
 
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag','tags_has_projects','projects_id','tags_id');
     }
 
-    
+
 }

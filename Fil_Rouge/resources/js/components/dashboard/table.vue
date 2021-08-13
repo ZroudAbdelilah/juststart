@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <table class="display table-bordered nowrap table-responsive" cellspacing="0" width="100%">
+    <div class="table-responsive">
+        <table class="display table-bordered nowrap table w-100" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th v-for="(colum,key) in colums" :key=key >{{ colum }}</th>
@@ -66,12 +66,18 @@ export default {
                 cancelButtonText: 'No, keep it'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(this.deleteUrl+'/'+id, {
-                    headers: {
-                        token: localStorage.getItem('admin_token')
-                    }
+                    // axios.defaults.withCredentials = true;
+                    axios({
+                        url:this.deleteUrl+'/'+id,
+                        method: 'DELETE',
+                        headers: {
+                            id: JSON.parse(localStorage.getItem('user')).id,
+                            token: localStorage.getItem('admin_token'),
+                            Accept: '*/*'
+                        }
                     }).then(response=>{
-                         if(response.status == 200 && response.data == 1){
+                        console.log(response);
+                        if(response.status == 200 && response.data == 1){
                             this.rows.forEach((row,index) => {
                                 if(row[0] == id){
                                     this.rows.splice(index, 1);
@@ -79,8 +85,21 @@ export default {
                             })
                             Swal.fire("Deleted successfully!")
                         }
-                        console.log(response);
-                    })
+                    }).catch(function (error) {
+                        if (error.response) {
+                        // Request made and server responded
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                        } else if (error.request) {
+                        // The request was made but no response was received
+                        console.log(error.request);
+                        } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', error.message);
+                        }
+
+                    });
                 }
             })
         },

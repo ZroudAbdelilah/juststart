@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -25,18 +26,29 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'target_b' => 'required|numeric|between:0.00,999999,99',
             'invested' => 'required|numeric|between:0.00,999999,99',
             'description' => 'required|string',
             'd_line' => 'required|date',
-            'thumbnail' => 'required|mimes:jpeg,png',
+            'thumbnail' => 'required|string',
             'categorys_id' => 'required|numeric',
             'project_leader_id' => 'required|numeric'
         ]);
-        return Project::create($request->all());
+        if($validator->fails()){
+            return $validator->errors();
+        }
+        return Project::create([
+            "name" => $request->input('name'),
+            "target_b" => $request->input('target_b'),
+            "invested" => $request->input('invested'),
+            "description" => $request->input('description'),
+            "d_line" => $request->input('d_line'),
+            "thumbnail" => $request->input('thumbnail'),
+            "categorys_id" => $request->input('categorys_id'),
+            "project_leader_id" => $request->input('project_leader_id')
+        ]);
     }
 
     /**
@@ -74,8 +86,6 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        return $id;
-        //
         return Project::destroy($id);
     }
 
@@ -99,5 +109,13 @@ class ProjectController extends Controller
     public function BestInvest()
     {
         return Project::with(['project_leader'])->orderBy('invested','DESC')->first();
+    }
+
+    public function getCount(){
+        return Project::count();
+    }
+
+    public function getAllinvested(){
+        return Project::sum('invested');
     }
 }

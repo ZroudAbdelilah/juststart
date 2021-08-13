@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="p-3">
-                         <Table :colums=colums :rows=rows editUrl="/dashboard/admin/projects/update" deleteUrl="http://localhost:8000/api/dashboard/admin/projects" v-bind:edit=true v-bind:remove=true />
+                         <Table :colums=colums :rows=rows editUrl="/dashboard/projects/update" deleteUrl="http://127.0.0.1:8000/api/dashboard/admin/projects" v-bind:edit=true v-bind:remove=true />
                     </div>
                 </div>
             </div>

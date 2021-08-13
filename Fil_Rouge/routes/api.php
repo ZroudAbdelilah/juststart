@@ -49,6 +49,8 @@ Route::middleware(['admin'])->prefix('/dashboard/admin')->group(function () {
     Route::resource('categorys', CategoryController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('orders', OrderController::class);
+
+    // Route::get('projects/delete/{id}', [ProjectController::class,'destroy']);
     Route::resource('projects', ProjectController::class);
     Route::resource('project_leader', ProjectLeaderController::class);
     Route::resource('tags', TagController::class);
@@ -85,3 +87,8 @@ Route::get('/projects/latest', [App\Http\Controllers\ProjectController::class,'l
 Route::get('/projects/best-invest', [App\Http\Controllers\ProjectController::class,'BestInvest']);
 
 Route::get('/categories', [ CategoryController::class,'index']);
+
+
+Route::get('/projects/total', [App\Http\Controllers\ProjectController::class,'getCount']);
+Route::get('/projects/invested/total', [App\Http\Controllers\ProjectController::class,'getAllinvested']);
+Route::get('/leaders/total', [ ProjectLeaderController::class, 'getCount']);
