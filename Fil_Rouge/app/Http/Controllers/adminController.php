@@ -16,6 +16,11 @@ class adminController extends Controller
                 'massage' => 'wrong mdp'
             ],401);
         }else{
+            return response([
+                'massage' => 'login accepted',
+                'token' => $admin->token,
+                'user' => $admin
+            ],200);
             return $admin->token;
         }
     }

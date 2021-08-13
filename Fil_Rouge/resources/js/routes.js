@@ -6,6 +6,7 @@ import Register from './pages/register.vue'
 import Home from './pages/home.vue'
 import dashboard from './pages/dashboard.vue'
 import RegisterPorteurProject from'./pages/register-leaderproject.vue'
+import Dashboardlogin from './pages/dashboard/login.vue'
 import dashboardRoutes from './dashboard-routes'
 
 const routes = [
@@ -22,13 +23,14 @@ const routes = [
         path : '/dashboard' , component : dashboard,
         children : dashboardRoutes,
         beforeEnter: (to, from, next) => {
-            if(localStorage.getItem('token')){
+            if(localStorage.getItem('admin_token')){
                 next()
             }else{
-            window.location.href = "/login"
+            window.location.href = "/dashboard/login"
              next(false)
             }
           }
-    }
+    },
+    {path: '/dashboard/login',component:Dashboardlogin}
 ]
 export default routes

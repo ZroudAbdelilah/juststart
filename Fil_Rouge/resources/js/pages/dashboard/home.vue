@@ -25,9 +25,7 @@
             <div class="col-12">
                 <div class="shadow border rounded bg-light text-white p-3">
                     <div class="small">
-    <line-chart :chart-data="datacollection"></line-chart>
-    <button @click="fillData()">Randomize</button>
-  </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,11 +35,9 @@
 
 </style>
 <script>
-import LineChart from 'chart.js/auto'
 
   export default {
     components: {
-      LineChart
     },
     data () {
       return {

@@ -38,7 +38,7 @@ export default {
             axios.get('http://127.0.0.1:8000/api/logout/'+JSON.parse(localStorage.getItem('user')).id).then(response=>{
                 if(response.status == 200){
                     console.log(response);
-                    localStorage.removeItem('token')
+                    localStorage.removeItem('admin_token')
                     this.$router.push('/login')
                 }
             })

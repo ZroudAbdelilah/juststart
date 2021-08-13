@@ -14,7 +14,7 @@
         <div class="card-body">
         <h3>{{project.name}}</h3>
         <p class="card-text">
-        {{project.description.substring(0,75)}}
+        {{project.description.substring(0,70)}}
         </p>
         <div class="author">
                     <small class="text-muted">By {{project.project_leader.username}}</small>

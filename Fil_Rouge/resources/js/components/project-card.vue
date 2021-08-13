@@ -11,7 +11,7 @@
                             <h2>{{ product.name }}</h2>
                         </div>
                         <div class="description">
-                            <p>{{ product.description.substring(0,350) }}</p>
+                            <p>{{ product.description }}</p>
                         </div>
                         <div class="author">
                             <span>By {{product.project_leader.username}}</span>
@@ -21,8 +21,8 @@
                                 <div :style="'width:'+((product.invested/product.target_b)*100)+'%;max-width:100%'" class="progress"></div>
                             </div>
                             <div class="percentage">
-                                <!-- <div class="min"><span>0%</span></div> -->
-                                <div class="max"><span>{{"(this.project.invested/this.project.target_b)*100)"}}%</span></div>
+                                <div class="min"><span>0%</span></div>
+                                <div class="max"><span>100%</span></div>
                             </div>
                         </div>
                         <div class="request">
@@ -122,8 +122,7 @@ a{
 export default {
     data:()=>{
         return {
-            restDays:0,
-           
+            restDays:0
         }
     },
     props:{

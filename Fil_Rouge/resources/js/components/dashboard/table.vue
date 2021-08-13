@@ -54,7 +54,7 @@ export default {
     },
     methods:{
         update(id){
-            router.go(this.editUrl+'/'+id)
+            this.$router.push(this.editUrl+'/'+id)
         },
         delet(id){
             Swal.fire({
@@ -66,14 +66,12 @@ export default {
                 cancelButtonText: 'No, keep it'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios({
-                        method:'DELETE',
-                        url:this.deleteUrl+'/'+id,
-                        headers:{
-                            'token' : localStorage.getItem('token')
-                        }
-                    }).then(response => {
-                        if(response.status == 200 && response.data == 1){
+                    axios.delete(this.deleteUrl+'/'+id, {
+                    headers: {
+                        token: localStorage.getItem('admin_token')
+                    }
+                    }).then(response=>{
+                         if(response.status == 200 && response.data == 1){
                             this.rows.forEach((row,index) => {
                                 if(row[0] == id){
                                     this.rows.splice(index, 1);
@@ -81,6 +79,7 @@ export default {
                             })
                             Swal.fire("Deleted successfully!")
                         }
+                        console.log(response);
                     })
                 }
             })

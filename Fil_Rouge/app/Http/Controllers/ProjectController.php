@@ -26,6 +26,16 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string',
+            'target_b' => 'required|numeric|between:0.00,999999,99',
+            'invested' => 'required|numeric|between:0.00,999999,99',
+            'description' => 'required|string',
+            'd_line' => 'required|date',
+            'thumbnail' => 'required|mimes:jpeg,png',
+            'categorys_id' => 'required|numeric',
+            'project_leader_id' => 'required|numeric'
+        ]);
         return Project::create($request->all());
     }
 
@@ -64,6 +74,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
+        return $id;
         //
         return Project::destroy($id);
     }

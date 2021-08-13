@@ -83,3 +83,5 @@ Route::get('/test/delete/{id}', function ($id) {
 Route::get('/projects', [App\Http\Controllers\ProjectController::class,'index']);
 Route::get('/projects/latest', [App\Http\Controllers\ProjectController::class,'latest']);
 Route::get('/projects/best-invest', [App\Http\Controllers\ProjectController::class,'BestInvest']);
+
+Route::get('/categories', [ CategoryController::class,'index']);

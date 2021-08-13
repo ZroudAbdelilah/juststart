@@ -8,11 +8,11 @@
                     <div class="actions row m-0 mb-3 py-3">
                         <div class="col"></div>
                         <div class="col-auto">
-                            <a href="#" class="btn btn-primary">Add product</a>
+                            <router-link to="/dashboard/projects/add" class="btn btn-primary">Add project</router-link>
                         </div>
                     </div>
                     <div class="p-3">
-                         <Table :colums=colums :rows=rows editUrl="http://localhost:8000/api/dashboard/admin/projects" deleteUrl="http://localhost:8000/api/dashboard/admin/projects" v-bind:edit=true v-bind:remove=true />
+                         <Table :colums=colums :rows=rows editUrl="/dashboard/admin/projects/update" deleteUrl="http://localhost:8000/api/dashboard/admin/projects" v-bind:edit=true v-bind:remove=true />
                     </div>
                 </div>
             </div>
