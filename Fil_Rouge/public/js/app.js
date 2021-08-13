@@ -25575,7 +25575,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "description" }, [
-                _c("p", [_vm._v(_vm._s(_vm.product.description))])
+                _c("p", [
+                  _vm._v(_vm._s(_vm.product.description.substring(0, 350)))
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "author" }, [
@@ -25596,12 +25598,14 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "percentage" }, [
-                  _c("div", { staticClass: "min" }, [
-                    _c("span", [_vm._v("0%")])
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "max" }, [
-                    _c("span", [_vm._v("100%")])
+                    _c("span", [
+                      _vm._v(
+                        _vm._s(
+                          "(this.project.invested/this.project.target_b)*100)"
+                        ) + "%"
+                      )
+                    ])
                   ])
                 ])
               ]),
@@ -25779,7 +25783,7 @@ var render = function() {
           _c("p", { staticClass: "card-text" }, [
             _vm._v(
               "\n    " +
-                _vm._s(_vm.project.description.substring(0, 70)) +
+                _vm._s(_vm.project.description.substring(0, 75)) +
                 "\n    "
             )
           ]),
