@@ -9,8 +9,11 @@ import RegisterPorteurProject from'./pages/register-leaderproject.vue'
 import Dashboardlogin from './pages/dashboard/login.vue'
 import dashboardRoutes from './dashboard-routes'
 
+import singleProjectPage from './pages/single-projects-page.vue'
+
 const routes = [
     {path : '/projects', component: projectPage},
+    {path : '/project/:id', component: singleProjectPage, props:true},
     {path : '/contact', component : Contact},
     {path : '/test', component : Test},
     {path : '/login', component : Login},

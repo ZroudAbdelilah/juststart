@@ -7,11 +7,11 @@
                     <div class="actions row m-0 mb-3 py-3">
                         <div class="col"></div>
                         <div class="col-auto">
-                            <a href="#" class="btn btn-primary">Add category</a>
+                            <router-link to="/dashboard/categories/add" class="btn btn-primary">Add Category</router-link>
                         </div>
                     </div>
                     <div class="p-3">
-                         <Table :colums=colums :rows=rows editUrl="http://127.0.0.1:8000/api/test/edit" deleteUrl="http://127.0.0.1:8000/api/test/delete" v-bind:edit=true v-bind:remove=true />
+                         <Table :colums=colums :rows=rows editUrl="http://127.0.0.1:8000/api/categories" deleteUrl="http://127.0.0.1:8000/api/dashboard/admin/categorys" v-bind:edit=false v-bind:remove=true />
                     </div>
                 </div>
             </div>
@@ -22,6 +22,7 @@
 </style>
 
 <script>
+import axios from 'axios'
 import Table from '../../components/dashboard/table.vue'
 export default {
     components:{
@@ -41,9 +42,15 @@ export default {
     },
     methods:{
         getCategpries(){
-            this.rows = [
-                [1,"test name"]
-            ];
+            axios.get('http://127.0.0.1:8000/api/categories').then(response=>{
+                if(response.status == 200)
+                response.data.forEach(row => {
+                    this.rows.push([
+                        row.id,
+                        row.name
+                    ])
+                });
+            })
         }
     }
 }

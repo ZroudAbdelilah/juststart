@@ -1,5 +1,6 @@
 <template>
     <div class="slide-card" style="width:fit-content;">
+        <router-link :to="'/project/'+project.id">
         <div class="card" style="width: 18rem;">
             <div class="thumbnail">
                 <img
@@ -21,7 +22,7 @@
         </div>
         </div>
         </div>
-
+        </router-link>
     </div>
 </template>
 

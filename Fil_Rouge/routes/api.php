@@ -82,6 +82,7 @@ Route::get('/test/delete/{id}', function ($id) {
 
 // Front office routes
 
+Route::get('/project/{id}', [App\Http\Controllers\ProjectController::class,'show']);
 Route::get('/projects', [App\Http\Controllers\ProjectController::class,'index']);
 Route::get('/projects/latest', [App\Http\Controllers\ProjectController::class,'latest']);
 Route::get('/projects/best-invest', [App\Http\Controllers\ProjectController::class,'BestInvest']);

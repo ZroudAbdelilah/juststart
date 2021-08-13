@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="project-card">
-            <router-link to="/">
+            <router-link :to="'/project/'+product.id">
                 <div>
                     <div class="thumbnail">
                         <img :src=product.thumbnail :alt=product.name>
@@ -11,7 +11,7 @@
                             <h2>{{ product.name }}</h2>
                         </div>
                         <div class="description">
-                            <p>{{ product.description }}</p>
+                            <p>{{ product.description.substring(0,250)+".." }}</p>
                         </div>
                         <div class="author">
                             <span>By {{product.project_leader.username}}</span>

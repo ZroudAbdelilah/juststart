@@ -18,6 +18,7 @@
             <div class="container">
                 <div class="row my-3">
                     <div class="col-12 col-md-7 py-5 px-5">
+                    <router-link :to="'/project/'+bestInvested.id">
                         <div class="main-Item">
                             <div class="thumbnail mb-3">
                                 <img class="img-responsive w-100" :src=bestInvested.thumbnail alt="#">
@@ -37,6 +38,7 @@
                                 </div>
                             </div>
                         </div>
+                    </router-link>
                     </div>
                     <div class="col-12 d-none d-md-block col-md-5 py-5 px-3">
                         <span class="dispaly-6">Rien que pour vous</span>

@@ -13,7 +13,7 @@
                     <span>Par</span><span> {{project.project_leader.username}}</span>
                 </div>
                 <div class="more">
-                    <router-link :to="'/'+project.id" class="text-success">More</router-link>
+                    <router-link :to="'/project/'+project.id" class="text-success">More</router-link>
                 </div>
             </div>
         </div>
