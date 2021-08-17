@@ -2,8 +2,8 @@
     <div>
         <Header/>
         <div class="container">
-            <h3>Explorez <span>182 projets</span></h3>
-            <projects :pages=projects :maxCard=9 :cols=3 :key=key />
+            <h3>Explorez <span>{{ products.length }} projets</span></h3>
+            <projects :pages=products :maxCard=9 :cols=3 :key=key />
         </div>
         <Footer/>
     </div>
@@ -47,7 +47,7 @@ export default {
        getData(){
            axios.get('http://127.0.0.1:8000/api/projects').then(response=>{
                if(response.status == 200)
-                   this.projects = response.data
+                   this.products = response.data
                    this.key++
            })
        } 

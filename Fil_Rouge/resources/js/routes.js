@@ -8,8 +8,10 @@ import dashboard from './pages/dashboard.vue'
 import RegisterPorteurProject from'./pages/register-leaderproject.vue'
 import Dashboardlogin from './pages/dashboard/login.vue'
 import dashboardRoutes from './dashboard-routes'
-
+import leaderDashboardRoutes from './leader-routes'
 import singleProjectPage from './pages/single-projects-page.vue'
+import invest from './pages/invest.vue'
+import LeaderDashboardlogin from './pages/loginleader.vue'
 
 const routes = [
     {path : '/projects', component: projectPage},
@@ -20,6 +22,7 @@ const routes = [
     {path : '/register', component : Register},
     {path : '/', component : Home},
     {path : '/porteurproject/register', component:RegisterPorteurProject},
+    {path : '/invest', component:invest},
 
     // dashboard
     {
@@ -34,6 +37,20 @@ const routes = [
             }
           }
     },
-    {path: '/dashboard/login',component:Dashboardlogin}
+    // leader dashboard
+    {
+        path : '/leader/dashboard' , component : dashboard,
+        children : leaderDashboardRoutes,
+        beforeEnter: (to, from, next) => {
+            if(localStorage.getItem('leader_token')){
+                next()
+            }else{
+            window.location.href = "/porteurproject/login"
+             next(false)
+            }
+          }
+    },
+    {path: '/dashboard/login',component:Dashboardlogin},
+    {path: '/porteurproject/login',component:LeaderDashboardlogin},
 ]
 export default routes

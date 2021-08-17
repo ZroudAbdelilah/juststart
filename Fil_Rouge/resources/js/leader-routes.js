@@ -14,10 +14,8 @@ const routes = [
     {path : 'projects' , component : projects },
     {path : 'projects/add', component : addProject},
     {path : 'projects/update/:id', component : updateProject, props:true},
-    {path : 'users' ,  component : users},
     {path : 'categories' ,  component : categories},
     {path : 'categories/add' ,  component : addCategories},
-    {path : 'tags' ,  component : tags},
     // {path : 'projects/update/:id',component : updateProject, props:true}
 ]
 

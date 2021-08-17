@@ -68,7 +68,7 @@
                     <div class="col">
                         <div class="d-block h6 mt-3 px-2">
                             <span>LES NOUVEAUTES QUI NOUS PLAISENT</span>
-                            <span class="text-success more small ml-3">Discover more <i class="fa fa-arrow-right"></i></span>
+                            <router-link to="/projects" class="text-success more small ml-3">Discover more<i class="fa fa-arrow-right"></i></router-link>
                         </div>
                         <div class="mb-5 mt-2">
                             <carousel v-if="(!isMobile)" :autoplay="true" :nav="false" :loop=true :center=true :key=step :responsive="{0:{items:1,autoWidth:true,nav:false},400:{items:1,nav:false},600:{items:2,nav:false},700:{items:auto}}">

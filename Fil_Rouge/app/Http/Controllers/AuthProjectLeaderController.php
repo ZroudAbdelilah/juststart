@@ -6,14 +6,16 @@ use App\Models\Adress;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 use Str;
 class AuthProjectLeaderController extends Controller
 {
     //
     public function register(Request $request){
-        $fields = $request->validate([
+        // return $request->all();
+        $validator = Validator::make($request->all(),[
             'username'=> 'required|string',
-            'email'=>'required|string|unique:project_leader,email',
+            'email'=>'required|email|string|unique:project_leader',
             'password'=>'required|string|confirmed',
             'county' => 'required|string',
             'state' => 'required|string',
@@ -21,31 +23,38 @@ class AuthProjectLeaderController extends Controller
             'street' => 'required|string',
             'p_code' => 'required|string'
         ]);
+        if($validator->fails()){
+            return [
+                'state' => 500,
+                'error' => $validator->errors()
+            ];
+        }
 
         $adressId = Adress::create([
-            'county' => $fields['county'],
-            'state' => $fields['state'],
-            'city' => $fields['city'],
-            'street' => $fields['street'],
-            'p_code' => $fields['p_code']
+            'county' => $request->input('county'),
+            'state' => $request->input('state'),
+            'city' => $request->input('city'),
+            'street' => $request->input('street'),
+            'p_code' => $request->input('p_code')
         ]);
         if($adressId){
             $projectLeader = ProjectLeader::create([
-                'username'=>$fields['username'],
-                'email'=>$fields['email'],
-                'password'=>Hash::make($fields['password']),
+                'username'=>$request->input('username'),
+                'email'=>$request->input('email'),
+                'password'=>Hash::make($request->input('password')),
                 'adresss_id' => $adressId->id,
                 'token' => Str::random(60)
             ]);
         }
         
 
-        $response =[
-            'projectLeader'=>$projectLeader,
+        $response = [
+            'state' => 200,
+            'user'=>$projectLeader,
             'token'=>$projectLeader->token
         ];
 
-        return response($response,201);
+        return response($response,200);
     }
     public function logout(Request $request){
         auth()->projectLeader()->tokens()->delete();
@@ -71,7 +80,7 @@ class AuthProjectLeaderController extends Controller
         // return ['token'=>$projectLeader->token];
 
         $response =[
-            'projectLeader'=>$projectLeader,
+            'user'=>$projectLeader,
             'token'=>$projectLeader->token
         ];
 

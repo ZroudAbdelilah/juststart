@@ -21,8 +21,9 @@
                                 <div :style="'width:'+((product.invested/product.target_b)*100)+'%;max-width:100%'" class="progress"></div>
                             </div>
                             <div class="percentage">
-                                <div class="min"><span>0%</span></div>
-                                <div class="max"><span>100%</span></div>
+                                <div class="finance text-success">
+                                <span> {{((product.invested/product.target_b)*100).toFixed(2)}}%</span>
+                                </div>
                             </div>
                         </div>
                         <div class="request">
@@ -122,14 +123,14 @@ a{
 export default {
     data:()=>{
         return {
-            restDays:0
+            restDays:0,
         }
     },
     props:{
         product:{}
     },
     created(){
-        this.getRestDays()
+        this.getRestDays() 
     },
     methods:{
         getRestDays(){
@@ -141,7 +142,9 @@ export default {
             var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
             //To display the final no. of days (result)
             this.restDays = Difference_In_Days.toFixed(0)
-        }
+        },
+
+
     }
 }
 </script>
