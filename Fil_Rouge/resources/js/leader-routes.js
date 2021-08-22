@@ -1,11 +1,8 @@
-import home from './pages/dashboard/home.vue'
-import projects from './pages/dashboard/projects.vue'
-import users from './pages/dashboard/users.vue'
-import categories from './pages/dashboard/categories.vue'
-import tags from './pages/dashboard/tags.vue'
-import addProject from './pages/dashboard/add-project.vue'
-import updateProject from './pages/dashboard/update-project.vue'
-import addCategories from './pages/dashboard/add-category.vue'
+import home from './pages/leader-dashboard/home.vue'
+import projects from './pages/leader-dashboard/projects.vue'
+import categories from './pages/leader-dashboard/categories.vue'
+import addProject from './pages/leader-dashboard/add-project.vue'
+import updateProject from './pages/leader-dashboard/update-project.vue'
 
 
 
@@ -15,7 +12,6 @@ const routes = [
     {path : 'projects/add', component : addProject},
     {path : 'projects/update/:id', component : updateProject, props:true},
     {path : 'categories' ,  component : categories},
-    {path : 'categories/add' ,  component : addCategories},
     // {path : 'projects/update/:id',component : updateProject, props:true}
 ]
 

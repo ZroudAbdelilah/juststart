@@ -25,7 +25,7 @@
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit"><i  class="fas fa-search"></i></button>
-          <router-link to="/login" class="btn btn-outline-success my-2 my-sm-0 mr-2" >Connexion</router-link>
+          <router-link to="/porteurproject/login" class="btn btn-outline-success my-2 my-sm-0 mr-2" >Connexion</router-link>
           <router-link class="btn btn-outline-primary my-2 my-sm-0" to="/register" >S'inscrire</router-link>
         </form>
   </div>

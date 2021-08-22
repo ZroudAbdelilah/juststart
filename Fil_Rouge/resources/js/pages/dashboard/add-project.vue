@@ -129,6 +129,7 @@ export default {
             }
         },
         validate(){
+            // return true;
             if(this.name == '') return false;
             if(this.target_b == '') return false;
             if(this.invested == '') return false;

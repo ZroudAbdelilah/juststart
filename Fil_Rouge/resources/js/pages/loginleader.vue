@@ -9,7 +9,9 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5">Sign in</h3>
-
+            <div v-if="eroremsg.length>0" class="alert alert-danger text-left">
+              <li v-for="erore,key in eroremsg" :key=key>{{erore}}</li>
+            </div>
             <div class="form-outline mb-4">
               <input v-model="email" type="email" placeholder="Email" id="typeEmailX" class="form-control form-control-lg" />
               <!-- <label class="form-label" for="typeEmailX">Email</label> -->
@@ -59,11 +61,13 @@ export default {
     data:()=>{
       return{
         email:'',
-        password:''
+        password:'',
+        eroremsg:[]
       }
     },
     methods:{
       login(){
+        this.eroremsg = [];
         if(this.validate()){
           axios.post('http://127.0.0.1:8000/api/leaderproject/login',{
                 'email': this.email,
@@ -74,14 +78,24 @@ export default {
                   localStorage.setItem('leader_token',response.data.token)
                   localStorage.setItem('user',JSON.stringify(response.data.user))
                   this.$router.push('/leader/dashboard')
+                }else
+                {
+                response.data.errors.forEach(el => {
+                  this.eroremsg.push(el)
+                });
                 }
               })
         }
       },
       validate(){
-        if(this.email == '') return false
-        if(this.password == '') return false
-
+        if(this.email == ''){
+          this.eroremsg.push('Email is required')
+           return false
+        } 
+        if(this.password == ''){
+          this.eroremsg.push('Password is required')
+          return false
+        }
         return true
       }
     }
